@@ -82,10 +82,37 @@ U1_1_probabilidad_estadistica/
 │   │       ├── births-and-deaths-projected-to-2100.csv
 │   │       ├── births-and-deaths-projected-to-2100.metadata.json
 │   │       └── readme.md
-│   └── processed/                                # Datos transformados (vacía por ahora)
+│   └── processed/                                # Datos generados por los pipelines de src/
 ├── notebooks/
-│   └── 01_evolucion_poblacional.ipynb            # Notebook con las cuatro actividades
-└── src/                                          # Scripts de apoyo
+│   ├── 01_evolucion_poblacional.ipynb            # Notebook con las cuatro actividades
+│   └── 02_transformaciones.ipynb                 # Transformaciones con pandas (esperanza de vida)
+└── src/
+    ├── 01_pipeline.py                            # Pipeline ETL: promedio de esperanza de vida por país
+    └── 02_pipeline_auto.py                       # Pipeline automatizado en una función: limpieza general
+```
+
+### Pipelines y transformaciones (esperanza de vida)
+
+Estos archivos usan el dataset *Life expectancy* de Our World in Data, que se **descarga
+directamente de internet** al ejecutarlos (no se guarda en `data/raw/`), por lo que requieren
+conexión y la librería `requests`.
+
+- **`notebooks/02_transformaciones.ipynb`** — descarga los datos, renombra las columnas al
+  español (`Pais`, `Codigo`, `Anio`, `Esperanza de Vida`), filtra entidades por texto, localiza y
+  elimina los registros sin código (agregados como *Americas*), obtiene los 10 países con menor
+  esperanza de vida en 2020 y mide la memoria usada por el DataFrame.
+- **`src/01_pipeline.py`** — pipeline por etapas (extracción, exploración, limpieza,
+  transformación, filtrado desde el año 2000, análisis y resultado). Excluye también los agregados
+  de OWID que sí tienen código (`OWID_WRL`, continentes y grupos de ingreso) y guarda
+  `data/processed/promedio_esperanza_vida_por_pais.csv`.
+- **`src/02_pipeline_auto.py`** — agrupa la exploración y la limpieza (eliminar nulos y
+  duplicados) en la función `ejecutar_pipeline(df)` y guarda
+  `data/processed/auto_resultado.csv`.
+
+Los scripts se ejecutan desde cualquier carpeta, por ejemplo:
+
+```bash
+python src/01_pipeline.py
 ```
 
 Los archivos de `data/raw/` **no se modifican nunca**. Cualquier archivo derivado o transformado
@@ -122,6 +149,7 @@ Contenido de `requirements.txt`:
 ```text
 pandas==3.0.5
 numpy==2.5.2
+requests
 jupyter
 ipykernel
 notebook
