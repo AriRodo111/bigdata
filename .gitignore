@@ -20,3 +20,6 @@
 
 # Respaldos locales (no forman parte del repositorio)
 _respaldo/
+
+# Dataset del segundo parcial (330 MB, supera el limite de GitHub)
+examen_segundo_parcial/data/raw/*.csv
