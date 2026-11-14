@@ -6,4 +6,5 @@
 - Segunda marca (hecha después de clonar en Databricks, para probar Pull): `SYNC-A2-LOCAL-PULL`
 
 ## Recorrido B — Databricks → GitHub → local
-- (pendiente: se agrega desde Databricks)
+- Creado en: Databricks Free Edition, Git folder bigdata, 13/11/2026
+- Marca: SYNC-B-DATABRICKS-20261113
