@@ -1,0 +1,4 @@
+# U5.1 — PySpark + NYC Taxi (probado el 13/11/2026 en macOS, Python 3.14.7, Java 21)
+pyspark==4.3.0
+pyarrow==26.0.1
+ipykernel
