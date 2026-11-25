@@ -8,3 +8,4 @@
 ## Recorrido B — Databricks → GitHub → local
 - Creado en: Databricks Free Edition, Git folder bigdata, 13/11/2026
 - Marca: SYNC-B-DATABRICKS-20261113
+- Prueba tras reescritura 24/11/2026: SYNC-C-DATABRICKS-20261124
